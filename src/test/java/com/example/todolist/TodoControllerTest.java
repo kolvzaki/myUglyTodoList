@@ -61,11 +61,13 @@ public class TodoControllerTest {
     public void should_return_added_todo_item_when_perform_post_given_new_todo_item() throws Exception {
         //given
         String context = "Test Context add";
+        TodoItem todoItem = new TodoItem(context);
+        String todoJson = new ObjectMapper().writeValueAsString(todoItem);
 
         //when & then
         client.perform(MockMvcRequestBuilders.post("/todo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(context))
+                .content(todoJson))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNumber())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.context",equalTo(context)))

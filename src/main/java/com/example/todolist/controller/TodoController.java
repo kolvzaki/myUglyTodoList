@@ -22,7 +22,7 @@ public class TodoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TodoItem addTodoItem(@RequestBody String context){
-        return todoService.addTodoItem(context);
+    public TodoItem addTodoItem(@RequestBody TodoItem todoItem){
+        return todoService.addTodoItem(todoItem);
     }
 }

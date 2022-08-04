@@ -22,8 +22,8 @@ public class TodoService {
                 .orElseThrow(()->new GlobalException(ServiceException.GET_TODOS_FAILED));
     }
 
-    public TodoItem addTodoItem(String context){
-        return Optional.of(todoRepository.save(new TodoItem(context)))
+    public TodoItem addTodoItem(TodoItem todoItem){
+        return Optional.of(todoRepository.save(todoItem))
                 .orElseThrow(()->new GlobalException(ServiceException.ADD_TODO_FAILED));
     }
 }
