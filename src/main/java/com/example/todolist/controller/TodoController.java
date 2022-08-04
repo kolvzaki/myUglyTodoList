@@ -2,10 +2,8 @@ package com.example.todolist.controller;
 
 import com.example.todolist.entity.TodoItem;
 import com.example.todolist.service.TodoService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,5 +18,11 @@ public class TodoController {
     @GetMapping
     public List<TodoItem> getAllTodoItems(){
         return todoService.getAllTodoItems();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public TodoItem addTodoItem(@RequestBody String context){
+        return todoService.addTodoItem(context);
     }
 }

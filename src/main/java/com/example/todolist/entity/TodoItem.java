@@ -9,16 +9,23 @@ public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String text;
+    @Column(name = "text")
+    private String context;
     private Boolean done;
 
 
     public TodoItem() {
     }
 
-    public TodoItem(Integer id, String text, Boolean done) {
+    public TodoItem(String context) {
+        this.id = null;
+        this.context = context;
+        this.done = false;
+    }
+
+    public TodoItem(Integer id, String context, Boolean done) {
         this.id = id;
-        this.text = text;
+        this.context = context;
         this.done = done;
     }
 
@@ -30,12 +37,12 @@ public class TodoItem {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getContext() {
+        return context;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContext(String context) {
+        this.context = context;
     }
 
     public Boolean getDone() {

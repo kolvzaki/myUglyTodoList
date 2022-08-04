@@ -18,6 +18,12 @@ public class TodoService {
     private TodoRepository todoRepository;
 
     public List<TodoItem> getAllTodoItems(){
-        return Optional.of(todoRepository.findAll()).orElseThrow(()->new GlobalException(ServiceException.GET_TODOS_FAILED));
+        return Optional.of(todoRepository.findAll())
+                .orElseThrow(()->new GlobalException(ServiceException.GET_TODOS_FAILED));
+    }
+
+    public TodoItem addTodoItem(String context){
+        return Optional.of(todoRepository.save(new TodoItem(context)))
+                .orElseThrow(()->new GlobalException(ServiceException.ADD_TODO_FAILED));
     }
 }
