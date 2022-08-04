@@ -1,13 +1,12 @@
 package com.example.todolist.service;
 
 import com.example.todolist.common.GlobalException;
-import com.example.todolist.common.ServiceException;
+import com.example.todolist.common.TodoException;
 import com.example.todolist.entity.TodoItem;
 import com.example.todolist.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +18,18 @@ public class TodoService {
 
     public List<TodoItem> getAllTodoItems(){
         return Optional.of(todoRepository.findAll())
-                .orElseThrow(()->new GlobalException(ServiceException.GET_TODOS_FAILED));
+                .orElseThrow(()->new GlobalException(TodoException.GET_TODOS_FAILED));
     }
 
     public TodoItem addTodoItem(TodoItem todoItem){
         return Optional.of(todoRepository.save(todoItem))
-                .orElseThrow(()->new GlobalException(ServiceException.ADD_TODO_FAILED));
+                .orElseThrow(()->new GlobalException(TodoException.ADD_TODO_FAILED));
+    }
+
+    public TodoItem updateTodoItem(Integer id,TodoItem toUpdateTodoItem){
+        TodoItem findTodoItem = todoRepository.findById(id).orElseThrow(()->new GlobalException(TodoException.TODO_NOT_FOUND));
+        findTodoItem.setContext(toUpdateTodoItem.getContext());
+        findTodoItem.setDone(toUpdateTodoItem.getDone());
+        return todoRepository.save(findTodoItem);
     }
 }

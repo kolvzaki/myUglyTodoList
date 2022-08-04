@@ -12,8 +12,8 @@ public class GlobalException extends RuntimeException{
         super(message);
     }
 
-    public GlobalException(ServiceException serviceException){
-        super(serviceException.getMessage());
+    public GlobalException(TodoException todoException){
+        super(todoException.getMessage());
     }
 
 }
