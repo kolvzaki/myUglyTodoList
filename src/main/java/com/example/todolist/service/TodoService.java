@@ -32,4 +32,7 @@ public class TodoService {
         findTodoItem.setDone(toUpdateTodoItem.getDone());
         return todoRepository.save(findTodoItem);
     }
+    public void deleteTodoItem(Integer id){
+        todoRepository.deleteById(id);
+    }
 }

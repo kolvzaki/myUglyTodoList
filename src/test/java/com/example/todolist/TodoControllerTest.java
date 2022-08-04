@@ -98,4 +98,18 @@ public class TodoControllerTest {
         assertThat(fetchTodoItem.getContext()).isEqualTo(toUpdateTodoItem.getContext());
         assertThat(fetchTodoItem.getDone()).isFalse();
     }
+
+    @Test
+    public void should_return_no_content_when_perform_delete_given_todo_id() throws Exception {
+        //given
+        TodoItem todoItem = todoRepository.save(new TodoItem("Test Context"));
+
+        //when
+        client.perform(MockMvcRequestBuilders.delete("/todo/{id}",todoItem.getId()))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+
+        //then
+        List<TodoItem> fetchTodoItems = todoRepository.findAll();
+        assertThat(fetchTodoItems).hasSize(0);
+    }
 }
