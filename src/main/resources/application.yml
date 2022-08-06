@@ -1,14 +1,17 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   profiles:
     active: test
 
+  thymeleaf:
+    cache: false
+    mode: HTML
 ---
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/todolist
+    url: ${JDBC_DATABASE_URL:}
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
