@@ -8,7 +8,7 @@ spring:
 ---
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432
+    url: jdbc:postgresql://localhost:5432/todolist
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
