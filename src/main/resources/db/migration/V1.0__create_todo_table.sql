@@ -1,3 +1,6 @@
+drop database if exists todolist;
+create database todolist;
+
 create sequence todo_sequence start 1;
 
 create table if not exists todo
